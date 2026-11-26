@@ -1,0 +1,1943 @@
+{
+  "code_version": "da6f40271bb6",
+  "config": {
+    "description": "First comparison of the trust score with the average-rating baselines: base campus, rating inflation sweep, collusion sweep. Defaults: simulate.DEFAULTS.",
+    "name": "fall2026-v1",
+    "scenarios": {
+      "base": {},
+      "colluders=0.0": {
+        "mix": {
+          "careless": 0.25,
+          "colluder": 0.0,
+          "malicious": 0.1,
+          "reliable": 0.65
+        }
+      },
+      "colluders=0.05": {
+        "mix": {
+          "careless": 0.25,
+          "colluder": 0.05,
+          "malicious": 0.1,
+          "reliable": 0.6
+        }
+      },
+      "colluders=0.1": {
+        "mix": {
+          "careless": 0.25,
+          "colluder": 0.1,
+          "malicious": 0.1,
+          "reliable": 0.55
+        }
+      },
+      "colluders=0.15": {
+        "mix": {
+          "careless": 0.25,
+          "colluder": 0.15,
+          "malicious": 0.1,
+          "reliable": 0.5
+        }
+      },
+      "inflation=0.0": {
+        "inflation": 0.0
+      },
+      "inflation=0.3": {
+        "inflation": 0.3
+      },
+      "inflation=0.6": {
+        "inflation": 0.6
+      },
+      "inflation=0.9": {
+        "inflation": 0.9
+      },
+      "one_way_colluders=0.05": {
+        "collusion_one_way": true,
+        "mix": {
+          "careless": 0.25,
+          "colluder": 0.05,
+          "malicious": 0.1,
+          "reliable": 0.6
+        }
+      },
+      "one_way_colluders=0.1": {
+        "collusion_one_way": true,
+        "mix": {
+          "careless": 0.25,
+          "colluder": 0.1,
+          "malicious": 0.1,
+          "reliable": 0.55
+        }
+      },
+      "one_way_colluders=0.15": {
+        "collusion_one_way": true,
+        "mix": {
+          "careless": 0.25,
+          "colluder": 0.15,
+          "malicious": 0.1,
+          "reliable": 0.5
+        }
+      }
+    },
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "scenarios": {
+    "base": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.453532,
+          "std": 0.058403
+        },
+        "precision_at_budget": {
+          "mean": 0.477778,
+          "std": 0.102439
+        },
+        "recall_at_budget": {
+          "mean": 0.479567,
+          "std": 0.055395
+        },
+        "spearman": {
+          "mean": 0.497436,
+          "std": 0.023934
+        },
+        "spearman_new_users": {
+          "mean": 0.277627,
+          "std": 0.151785
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.458138,
+          "std": 0.065998
+        },
+        "precision_at_budget": {
+          "mean": 0.475556,
+          "std": 0.108503
+        },
+        "recall_at_budget": {
+          "mean": 0.4766,
+          "std": 0.058751
+        },
+        "spearman": {
+          "mean": 0.498362,
+          "std": 0.028318
+        },
+        "spearman_new_users": {
+          "mean": 0.168346,
+          "std": 0.280658
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 10345.457444,
+          "std": 179.654718
+        },
+        "mean_deposit_risky": {
+          "mean": 12171.894129,
+          "std": 689.048166
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.924785,
+          "std": 0.153457
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9808.456983,
+          "std": 154.446127
+        },
+        "mean_deposit_risky": {
+          "mean": 12103.807693,
+          "std": 629.685981
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.916913,
+          "std": 0.154802
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10227.972543,
+          "std": 145.635785
+        },
+        "mean_deposit_risky": {
+          "mean": 10513.801113,
+          "std": 478.767616
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.049126,
+          "std": 0.181748
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.706815,
+          "std": 0.056211
+        },
+        "precision_at_budget": {
+          "mean": 0.635556,
+          "std": 0.077746
+        },
+        "recall_at_budget": {
+          "mean": 0.645638,
+          "std": 0.058688
+        },
+        "spearman": {
+          "mean": 0.790669,
+          "std": 0.011028
+        },
+        "spearman_new_users": {
+          "mean": 0.418407,
+          "std": 0.144249
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.595296,
+          "std": 0.07213
+        },
+        "precision_at_budget": {
+          "mean": 0.535556,
+          "std": 0.08575
+        },
+        "recall_at_budget": {
+          "mean": 0.541697,
+          "std": 0.056368
+        },
+        "spearman": {
+          "mean": 0.758423,
+          "std": 0.019086
+        },
+        "spearman_new_users": {
+          "mean": 0.359015,
+          "std": 0.187405
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.518511,
+          "std": 0.073431
+        },
+        "precision_at_budget": {
+          "mean": 0.506667,
+          "std": 0.101251
+        },
+        "recall_at_budget": {
+          "mean": 0.50999,
+          "std": 0.063348
+        },
+        "spearman": {
+          "mean": 0.57681,
+          "std": 0.032396
+        },
+        "spearman_new_users": {
+          "mean": 0.281983,
+          "std": 0.221985
+        }
+      }
+    },
+    "colluders=0.0": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.595318,
+          "std": 0.069025
+        },
+        "precision_at_budget": {
+          "mean": 0.471111,
+          "std": 0.068709
+        },
+        "recall_at_budget": {
+          "mean": 0.729202,
+          "std": 0.075087
+        },
+        "spearman": {
+          "mean": 0.659422,
+          "std": 0.031246
+        },
+        "spearman_new_users": {
+          "mean": 0.402748,
+          "std": 0.348072
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.601857,
+          "std": 0.075185
+        },
+        "precision_at_budget": {
+          "mean": 0.464444,
+          "std": 0.071974
+        },
+        "recall_at_budget": {
+          "mean": 0.718355,
+          "std": 0.077843
+        },
+        "spearman": {
+          "mean": 0.663518,
+          "std": 0.030095
+        },
+        "spearman_new_users": {
+          "mean": 0.467909,
+          "std": 0.187409
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 9875.424146,
+          "std": 139.406076
+        },
+        "mean_deposit_risky": {
+          "mean": 12583.659253,
+          "std": 514.881764
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.610812,
+          "std": 0.118282
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9553.691627,
+          "std": 114.528145
+        },
+        "mean_deposit_risky": {
+          "mean": 11796.801431,
+          "std": 371.193052
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.663034,
+          "std": 0.124659
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10317.794507,
+          "std": 109.515105
+        },
+        "mean_deposit_risky": {
+          "mean": 10186.65976,
+          "std": 404.55703
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.744664,
+          "std": 0.147526
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.696473,
+          "std": 0.061417
+        },
+        "precision_at_budget": {
+          "mean": 0.491111,
+          "std": 0.050136
+        },
+        "recall_at_budget": {
+          "mean": 0.764489,
+          "std": 0.077076
+        },
+        "spearman": {
+          "mean": 0.773052,
+          "std": 0.02609
+        },
+        "spearman_new_users": {
+          "mean": 0.501925,
+          "std": 0.326974
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.708531,
+          "std": 0.060388
+        },
+        "precision_at_budget": {
+          "mean": 0.495556,
+          "std": 0.04974
+        },
+        "recall_at_budget": {
+          "mean": 0.772285,
+          "std": 0.083982
+        },
+        "spearman": {
+          "mean": 0.776475,
+          "std": 0.025624
+        },
+        "spearman_new_users": {
+          "mean": 0.501925,
+          "std": 0.326974
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.712173,
+          "std": 0.057313
+        },
+        "precision_at_budget": {
+          "mean": 0.502222,
+          "std": 0.053702
+        },
+        "recall_at_budget": {
+          "mean": 0.781515,
+          "std": 0.080603
+        },
+        "spearman": {
+          "mean": 0.778949,
+          "std": 0.024998
+        },
+        "spearman_new_users": {
+          "mean": 0.504913,
+          "std": 0.328075
+        }
+      }
+    },
+    "colluders=0.05": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.453532,
+          "std": 0.058403
+        },
+        "precision_at_budget": {
+          "mean": 0.477778,
+          "std": 0.102439
+        },
+        "recall_at_budget": {
+          "mean": 0.479567,
+          "std": 0.055395
+        },
+        "spearman": {
+          "mean": 0.497436,
+          "std": 0.023934
+        },
+        "spearman_new_users": {
+          "mean": 0.277627,
+          "std": 0.151785
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.458138,
+          "std": 0.065998
+        },
+        "precision_at_budget": {
+          "mean": 0.475556,
+          "std": 0.108503
+        },
+        "recall_at_budget": {
+          "mean": 0.4766,
+          "std": 0.058751
+        },
+        "spearman": {
+          "mean": 0.498362,
+          "std": 0.028318
+        },
+        "spearman_new_users": {
+          "mean": 0.168346,
+          "std": 0.280658
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 10345.457444,
+          "std": 179.654718
+        },
+        "mean_deposit_risky": {
+          "mean": 12171.894129,
+          "std": 689.048166
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.924785,
+          "std": 0.153457
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9808.456983,
+          "std": 154.446127
+        },
+        "mean_deposit_risky": {
+          "mean": 12103.807693,
+          "std": 629.685981
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.916913,
+          "std": 0.154802
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10227.972543,
+          "std": 145.635785
+        },
+        "mean_deposit_risky": {
+          "mean": 10513.801113,
+          "std": 478.767616
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.049126,
+          "std": 0.181748
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.706815,
+          "std": 0.056211
+        },
+        "precision_at_budget": {
+          "mean": 0.635556,
+          "std": 0.077746
+        },
+        "recall_at_budget": {
+          "mean": 0.645638,
+          "std": 0.058688
+        },
+        "spearman": {
+          "mean": 0.790669,
+          "std": 0.011028
+        },
+        "spearman_new_users": {
+          "mean": 0.418407,
+          "std": 0.144249
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.595296,
+          "std": 0.07213
+        },
+        "precision_at_budget": {
+          "mean": 0.535556,
+          "std": 0.08575
+        },
+        "recall_at_budget": {
+          "mean": 0.541697,
+          "std": 0.056368
+        },
+        "spearman": {
+          "mean": 0.758423,
+          "std": 0.019086
+        },
+        "spearman_new_users": {
+          "mean": 0.359015,
+          "std": 0.187405
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.518511,
+          "std": 0.073431
+        },
+        "precision_at_budget": {
+          "mean": 0.506667,
+          "std": 0.101251
+        },
+        "recall_at_budget": {
+          "mean": 0.50999,
+          "std": 0.063348
+        },
+        "spearman": {
+          "mean": 0.57681,
+          "std": 0.032396
+        },
+        "spearman_new_users": {
+          "mean": 0.281983,
+          "std": 0.221985
+        }
+      }
+    },
+    "colluders=0.1": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.455127,
+          "std": 0.065239
+        },
+        "precision_at_budget": {
+          "mean": 0.526667,
+          "std": 0.083769
+        },
+        "recall_at_budget": {
+          "mean": 0.388795,
+          "std": 0.064042
+        },
+        "spearman": {
+          "mean": 0.432815,
+          "std": 0.036153
+        },
+        "spearman_new_users": {
+          "mean": 0.303425,
+          "std": 0.260181
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.454604,
+          "std": 0.060727
+        },
+        "precision_at_budget": {
+          "mean": 0.522222,
+          "std": 0.080277
+        },
+        "recall_at_budget": {
+          "mean": 0.38558,
+          "std": 0.062351
+        },
+        "spearman": {
+          "mean": 0.434561,
+          "std": 0.034408
+        },
+        "spearman_new_users": {
+          "mean": 0.068236,
+          "std": 0.359591
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 10328.823621,
+          "std": 199.076421
+        },
+        "mean_deposit_risky": {
+          "mean": 11659.732011,
+          "std": 288.115295
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.32261,
+          "std": 0.118283
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9800.718659,
+          "std": 139.506722
+        },
+        "mean_deposit_risky": {
+          "mean": 11505.011684,
+          "std": 267.7959
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.343816,
+          "std": 0.128988
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10301.526844,
+          "std": 104.088224
+        },
+        "mean_deposit_risky": {
+          "mean": 10446.29848,
+          "std": 240.107155
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.473414,
+          "std": 0.126358
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.682836,
+          "std": 0.081694
+        },
+        "precision_at_budget": {
+          "mean": 0.682222,
+          "std": 0.081982
+        },
+        "recall_at_budget": {
+          "mean": 0.503117,
+          "std": 0.066864
+        },
+        "spearman": {
+          "mean": 0.775441,
+          "std": 0.037895
+        },
+        "spearman_new_users": {
+          "mean": 0.239586,
+          "std": 0.240539
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.561628,
+          "std": 0.071019
+        },
+        "precision_at_budget": {
+          "mean": 0.573333,
+          "std": 0.089883
+        },
+        "recall_at_budget": {
+          "mean": 0.422062,
+          "std": 0.064209
+        },
+        "spearman": {
+          "mean": 0.676463,
+          "std": 0.043259
+        },
+        "spearman_new_users": {
+          "mean": 0.098528,
+          "std": 0.312291
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.505087,
+          "std": 0.066531
+        },
+        "precision_at_budget": {
+          "mean": 0.568889,
+          "std": 0.089
+        },
+        "recall_at_budget": {
+          "mean": 0.418269,
+          "std": 0.061084
+        },
+        "spearman": {
+          "mean": 0.515645,
+          "std": 0.025924
+        },
+        "spearman_new_users": {
+          "mean": 0.084457,
+          "std": 0.313242
+        }
+      }
+    },
+    "colluders=0.15": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.445407,
+          "std": 0.045101
+        },
+        "precision_at_budget": {
+          "mean": 0.526667,
+          "std": 0.073736
+        },
+        "recall_at_budget": {
+          "mean": 0.307773,
+          "std": 0.024974
+        },
+        "spearman": {
+          "mean": 0.407173,
+          "std": 0.027401
+        },
+        "spearman_new_users": {
+          "mean": 0.040367,
+          "std": 0.320735
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.440398,
+          "std": 0.047324
+        },
+        "precision_at_budget": {
+          "mean": 0.526667,
+          "std": 0.080768
+        },
+        "recall_at_budget": {
+          "mean": 0.307166,
+          "std": 0.023847
+        },
+        "spearman": {
+          "mean": 0.407477,
+          "std": 0.029847
+        },
+        "spearman_new_users": {
+          "mean": -0.120142,
+          "std": 0.337822
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 10178.045413,
+          "std": 198.8966
+        },
+        "mean_deposit_risky": {
+          "mean": 11415.644766,
+          "std": 373.851544
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.666335,
+          "std": 0.240394
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9696.767942,
+          "std": 141.981293
+        },
+        "mean_deposit_risky": {
+          "mean": 11063.800282,
+          "std": 351.891553
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.722593,
+          "std": 0.259237
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10271.873547,
+          "std": 136.681124
+        },
+        "mean_deposit_risky": {
+          "mean": 10475.916639,
+          "std": 239.575332
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.819419,
+          "std": 0.275768
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.597494,
+          "std": 0.03294
+        },
+        "precision_at_budget": {
+          "mean": 0.597778,
+          "std": 0.058331
+        },
+        "recall_at_budget": {
+          "mean": 0.351098,
+          "std": 0.027285
+        },
+        "spearman": {
+          "mean": 0.701817,
+          "std": 0.03953
+        },
+        "spearman_new_users": {
+          "mean": 0.105314,
+          "std": 0.240044
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.52521,
+          "std": 0.030745
+        },
+        "precision_at_budget": {
+          "mean": 0.562222,
+          "std": 0.065206
+        },
+        "recall_at_budget": {
+          "mean": 0.329131,
+          "std": 0.019091
+        },
+        "spearman": {
+          "mean": 0.595667,
+          "std": 0.030368
+        },
+        "spearman_new_users": {
+          "mean": -0.054654,
+          "std": 0.311115
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.493185,
+          "std": 0.032074
+        },
+        "precision_at_budget": {
+          "mean": 0.555556,
+          "std": 0.063635
+        },
+        "recall_at_budget": {
+          "mean": 0.325595,
+          "std": 0.024601
+        },
+        "spearman": {
+          "mean": 0.495195,
+          "std": 0.016869
+        },
+        "spearman_new_users": {
+          "mean": -0.059482,
+          "std": 0.319483
+        }
+      }
+    },
+    "inflation=0.0": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.470622,
+          "std": 0.081699
+        },
+        "precision_at_budget": {
+          "mean": 0.504444,
+          "std": 0.099901
+        },
+        "recall_at_budget": {
+          "mean": 0.507438,
+          "std": 0.057864
+        },
+        "spearman": {
+          "mean": 0.5253,
+          "std": 0.030735
+        },
+        "spearman_new_users": {
+          "mean": 0.452796,
+          "std": 0.255999
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.476992,
+          "std": 0.079864
+        },
+        "precision_at_budget": {
+          "mean": 0.504444,
+          "std": 0.099901
+        },
+        "recall_at_budget": {
+          "mean": 0.507438,
+          "std": 0.057864
+        },
+        "spearman": {
+          "mean": 0.52333,
+          "std": 0.032597
+        },
+        "spearman_new_users": {
+          "mean": 0.314549,
+          "std": 0.349428
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 10408.364672,
+          "std": 304.527548
+        },
+        "mean_deposit_risky": {
+          "mean": 12131.725209,
+          "std": 710.741591
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.810359,
+          "std": 0.142459
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9844.343262,
+          "std": 252.461612
+        },
+        "mean_deposit_risky": {
+          "mean": 12027.644164,
+          "std": 639.128752
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.838638,
+          "std": 0.138346
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10240.115788,
+          "std": 211.915956
+        },
+        "mean_deposit_risky": {
+          "mean": 10249.223771,
+          "std": 440.037466
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.992601,
+          "std": 0.17648
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.699763,
+          "std": 0.068743
+        },
+        "precision_at_budget": {
+          "mean": 0.62,
+          "std": 0.075979
+        },
+        "recall_at_budget": {
+          "mean": 0.630414,
+          "std": 0.06356
+        },
+        "spearman": {
+          "mean": 0.788977,
+          "std": 0.017937
+        },
+        "spearman_new_users": {
+          "mean": 0.498346,
+          "std": 0.286592
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.593084,
+          "std": 0.085006
+        },
+        "precision_at_budget": {
+          "mean": 0.511111,
+          "std": 0.079505
+        },
+        "recall_at_budget": {
+          "mean": 0.51691,
+          "std": 0.051783
+        },
+        "spearman": {
+          "mean": 0.753595,
+          "std": 0.028016
+        },
+        "spearman_new_users": {
+          "mean": 0.409549,
+          "std": 0.350478
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.507039,
+          "std": 0.091578
+        },
+        "precision_at_budget": {
+          "mean": 0.484444,
+          "std": 0.101251
+        },
+        "recall_at_budget": {
+          "mean": 0.487303,
+          "std": 0.066276
+        },
+        "spearman": {
+          "mean": 0.554521,
+          "std": 0.03951
+        },
+        "spearman_new_users": {
+          "mean": 0.345962,
+          "std": 0.426936
+        }
+      }
+    },
+    "inflation=0.3": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.453532,
+          "std": 0.058403
+        },
+        "precision_at_budget": {
+          "mean": 0.477778,
+          "std": 0.102439
+        },
+        "recall_at_budget": {
+          "mean": 0.479567,
+          "std": 0.055395
+        },
+        "spearman": {
+          "mean": 0.497436,
+          "std": 0.023934
+        },
+        "spearman_new_users": {
+          "mean": 0.277627,
+          "std": 0.151785
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.458138,
+          "std": 0.065998
+        },
+        "precision_at_budget": {
+          "mean": 0.475556,
+          "std": 0.108503
+        },
+        "recall_at_budget": {
+          "mean": 0.4766,
+          "std": 0.058751
+        },
+        "spearman": {
+          "mean": 0.498362,
+          "std": 0.028318
+        },
+        "spearman_new_users": {
+          "mean": 0.168346,
+          "std": 0.280658
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 10345.457444,
+          "std": 179.654718
+        },
+        "mean_deposit_risky": {
+          "mean": 12171.894129,
+          "std": 689.048166
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.924785,
+          "std": 0.153457
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9808.456983,
+          "std": 154.446127
+        },
+        "mean_deposit_risky": {
+          "mean": 12103.807693,
+          "std": 629.685981
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.916913,
+          "std": 0.154802
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10227.972543,
+          "std": 145.635785
+        },
+        "mean_deposit_risky": {
+          "mean": 10513.801113,
+          "std": 478.767616
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.049126,
+          "std": 0.181748
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.706815,
+          "std": 0.056211
+        },
+        "precision_at_budget": {
+          "mean": 0.635556,
+          "std": 0.077746
+        },
+        "recall_at_budget": {
+          "mean": 0.645638,
+          "std": 0.058688
+        },
+        "spearman": {
+          "mean": 0.790669,
+          "std": 0.011028
+        },
+        "spearman_new_users": {
+          "mean": 0.418407,
+          "std": 0.144249
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.595296,
+          "std": 0.07213
+        },
+        "precision_at_budget": {
+          "mean": 0.535556,
+          "std": 0.08575
+        },
+        "recall_at_budget": {
+          "mean": 0.541697,
+          "std": 0.056368
+        },
+        "spearman": {
+          "mean": 0.758423,
+          "std": 0.019086
+        },
+        "spearman_new_users": {
+          "mean": 0.359015,
+          "std": 0.187405
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.518511,
+          "std": 0.073431
+        },
+        "precision_at_budget": {
+          "mean": 0.506667,
+          "std": 0.101251
+        },
+        "recall_at_budget": {
+          "mean": 0.50999,
+          "std": 0.063348
+        },
+        "spearman": {
+          "mean": 0.57681,
+          "std": 0.032396
+        },
+        "spearman_new_users": {
+          "mean": 0.281983,
+          "std": 0.221985
+        }
+      }
+    },
+    "inflation=0.6": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.377202,
+          "std": 0.051876
+        },
+        "precision_at_budget": {
+          "mean": 0.411111,
+          "std": 0.059835
+        },
+        "recall_at_budget": {
+          "mean": 0.417869,
+          "std": 0.053267
+        },
+        "spearman": {
+          "mean": 0.398656,
+          "std": 0.047424
+        },
+        "spearman_new_users": {
+          "mean": 0.123873,
+          "std": 0.287121
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.379425,
+          "std": 0.052123
+        },
+        "precision_at_budget": {
+          "mean": 0.408889,
+          "std": 0.059794
+        },
+        "recall_at_budget": {
+          "mean": 0.415488,
+          "std": 0.052192
+        },
+        "spearman": {
+          "mean": 0.401021,
+          "std": 0.045636
+        },
+        "spearman_new_users": {
+          "mean": -0.012599,
+          "std": 0.242455
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 10316.840486,
+          "std": 193.54059
+        },
+        "mean_deposit_risky": {
+          "mean": 11633.911893,
+          "std": 361.027457
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.95791,
+          "std": 0.116985
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9816.185479,
+          "std": 173.927004
+        },
+        "mean_deposit_risky": {
+          "mean": 11725.963145,
+          "std": 358.853813
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.9558,
+          "std": 0.111398
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10274.050478,
+          "std": 169.294784
+        },
+        "mean_deposit_risky": {
+          "mean": 10530.183947,
+          "std": 299.918222
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.072782,
+          "std": 0.128168
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.657969,
+          "std": 0.036871
+        },
+        "precision_at_budget": {
+          "mean": 0.6,
+          "std": 0.034427
+        },
+        "recall_at_budget": {
+          "mean": 0.613156,
+          "std": 0.055327
+        },
+        "spearman": {
+          "mean": 0.772952,
+          "std": 0.021762
+        },
+        "spearman_new_users": {
+          "mean": 0.551802,
+          "std": 0.224304
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.570932,
+          "std": 0.061552
+        },
+        "precision_at_budget": {
+          "mean": 0.506667,
+          "std": 0.058626
+        },
+        "recall_at_budget": {
+          "mean": 0.515613,
+          "std": 0.054558
+        },
+        "spearman": {
+          "mean": 0.74114,
+          "std": 0.03064
+        },
+        "spearman_new_users": {
+          "mean": 0.415619,
+          "std": 0.290857
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.498195,
+          "std": 0.061359
+        },
+        "precision_at_budget": {
+          "mean": 0.488889,
+          "std": 0.063635
+        },
+        "recall_at_budget": {
+          "mean": 0.495793,
+          "std": 0.043894
+        },
+        "spearman": {
+          "mean": 0.571855,
+          "std": 0.037774
+        },
+        "spearman_new_users": {
+          "mean": 0.360025,
+          "std": 0.324348
+        }
+      }
+    },
+    "inflation=0.9": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.274885,
+          "std": 0.051862
+        },
+        "precision_at_budget": {
+          "mean": 0.266667,
+          "std": 0.055333
+        },
+        "recall_at_budget": {
+          "mean": 0.269778,
+          "std": 0.04602
+        },
+        "spearman": {
+          "mean": 0.237182,
+          "std": 0.050779
+        },
+        "spearman_new_users": {
+          "mean": 0.10409,
+          "std": 0.252076
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.273298,
+          "std": 0.050239
+        },
+        "precision_at_budget": {
+          "mean": 0.264444,
+          "std": 0.056612
+        },
+        "recall_at_budget": {
+          "mean": 0.267146,
+          "std": 0.045568
+        },
+        "spearman": {
+          "mean": 0.232765,
+          "std": 0.05201
+        },
+        "spearman_new_users": {
+          "mean": 0.006405,
+          "std": 0.284062
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 10361.186421,
+          "std": 80.374998
+        },
+        "mean_deposit_risky": {
+          "mean": 10682.259438,
+          "std": 596.00603
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.049144,
+          "std": 0.212407
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9879.398915,
+          "std": 82.404551
+        },
+        "mean_deposit_risky": {
+          "mean": 11260.817557,
+          "std": 612.859232
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.006348,
+          "std": 0.201955
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10364.8418,
+          "std": 77.660168
+        },
+        "mean_deposit_risky": {
+          "mean": 10341.048736,
+          "std": 462.616937
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.076956,
+          "std": 0.206864
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.693729,
+          "std": 0.031904
+        },
+        "precision_at_budget": {
+          "mean": 0.637778,
+          "std": 0.04974
+        },
+        "recall_at_budget": {
+          "mean": 0.651291,
+          "std": 0.063041
+        },
+        "spearman": {
+          "mean": 0.793171,
+          "std": 0.02128
+        },
+        "spearman_new_users": {
+          "mean": 0.277985,
+          "std": 0.545704
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.602502,
+          "std": 0.052611
+        },
+        "precision_at_budget": {
+          "mean": 0.533333,
+          "std": 0.071665
+        },
+        "recall_at_budget": {
+          "mean": 0.542351,
+          "std": 0.064068
+        },
+        "spearman": {
+          "mean": 0.766913,
+          "std": 0.02916
+        },
+        "spearman_new_users": {
+          "mean": 0.221753,
+          "std": 0.529282
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.519119,
+          "std": 0.052936
+        },
+        "precision_at_budget": {
+          "mean": 0.5,
+          "std": 0.082102
+        },
+        "recall_at_budget": {
+          "mean": 0.506565,
+          "std": 0.064302
+        },
+        "spearman": {
+          "mean": 0.610756,
+          "std": 0.043139
+        },
+        "spearman_new_users": {
+          "mean": 0.190172,
+          "std": 0.506124
+        }
+      }
+    },
+    "one_way_colluders=0.05": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.478148,
+          "std": 0.056043
+        },
+        "precision_at_budget": {
+          "mean": 0.502222,
+          "std": 0.100468
+        },
+        "recall_at_budget": {
+          "mean": 0.50507,
+          "std": 0.053467
+        },
+        "spearman": {
+          "mean": 0.528997,
+          "std": 0.019692
+        },
+        "spearman_new_users": {
+          "mean": 0.277627,
+          "std": 0.151785
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.483051,
+          "std": 0.062906
+        },
+        "precision_at_budget": {
+          "mean": 0.497778,
+          "std": 0.101932
+        },
+        "recall_at_budget": {
+          "mean": 0.500408,
+          "std": 0.054802
+        },
+        "spearman": {
+          "mean": 0.530222,
+          "std": 0.024279
+        },
+        "spearman_new_users": {
+          "mean": 0.168346,
+          "std": 0.280658
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 10345.457444,
+          "std": 179.654718
+        },
+        "mean_deposit_risky": {
+          "mean": 12326.436325,
+          "std": 673.818211
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.91364,
+          "std": 0.156862
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9808.456983,
+          "std": 154.446127
+        },
+        "mean_deposit_risky": {
+          "mean": 11962.735874,
+          "std": 628.048865
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 0.934089,
+          "std": 0.157851
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10227.972543,
+          "std": 145.635785
+        },
+        "mean_deposit_risky": {
+          "mean": 10513.801113,
+          "std": 478.767616
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.049126,
+          "std": 0.181748
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.664061,
+          "std": 0.061851
+        },
+        "precision_at_budget": {
+          "mean": 0.604444,
+          "std": 0.078126
+        },
+        "recall_at_budget": {
+          "mean": 0.612973,
+          "std": 0.049503
+        },
+        "spearman": {
+          "mean": 0.775364,
+          "std": 0.015118
+        },
+        "spearman_new_users": {
+          "mean": 0.399142,
+          "std": 0.158885
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.673142,
+          "std": 0.060835
+        },
+        "precision_at_budget": {
+          "mean": 0.617778,
+          "std": 0.08421
+        },
+        "recall_at_budget": {
+          "mean": 0.626683,
+          "std": 0.060118
+        },
+        "spearman": {
+          "mean": 0.780317,
+          "std": 0.016816
+        },
+        "spearman_new_users": {
+          "mean": 0.40445,
+          "std": 0.155475
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.546049,
+          "std": 0.06423
+        },
+        "precision_at_budget": {
+          "mean": 0.526667,
+          "std": 0.095865
+        },
+        "recall_at_budget": {
+          "mean": 0.531359,
+          "std": 0.060846
+        },
+        "spearman": {
+          "mean": 0.617813,
+          "std": 0.024845
+        },
+        "spearman_new_users": {
+          "mean": 0.316761,
+          "std": 0.184196
+        }
+      }
+    },
+    "one_way_colluders=0.1": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.486844,
+          "std": 0.059496
+        },
+        "precision_at_budget": {
+          "mean": 0.557778,
+          "std": 0.074668
+        },
+        "recall_at_budget": {
+          "mean": 0.41116,
+          "std": 0.056029
+        },
+        "spearman": {
+          "mean": 0.468191,
+          "std": 0.037459
+        },
+        "spearman_new_users": {
+          "mean": 0.303425,
+          "std": 0.260181
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.4869,
+          "std": 0.054562
+        },
+        "precision_at_budget": {
+          "mean": 0.555556,
+          "std": 0.070972
+        },
+        "recall_at_budget": {
+          "mean": 0.409731,
+          "std": 0.055381
+        },
+        "spearman": {
+          "mean": 0.470897,
+          "std": 0.035129
+        },
+        "spearman_new_users": {
+          "mean": 0.068236,
+          "std": 0.359591
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 10328.823621,
+          "std": 199.076421
+        },
+        "mean_deposit_risky": {
+          "mean": 11825.666717,
+          "std": 316.489445
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.299049,
+          "std": 0.112752
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9800.718659,
+          "std": 139.506722
+        },
+        "mean_deposit_risky": {
+          "mean": 11431.618365,
+          "std": 256.49066
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.354731,
+          "std": 0.124643
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10301.526844,
+          "std": 104.088224
+        },
+        "mean_deposit_risky": {
+          "mean": 10446.29848,
+          "std": 240.107155
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.473414,
+          "std": 0.126358
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.64019,
+          "std": 0.067589
+        },
+        "precision_at_budget": {
+          "mean": 0.651111,
+          "std": 0.071699
+        },
+        "recall_at_budget": {
+          "mean": 0.478926,
+          "std": 0.049711
+        },
+        "spearman": {
+          "mean": 0.731569,
+          "std": 0.039452
+        },
+        "spearman_new_users": {
+          "mean": 0.146145,
+          "std": 0.253313
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.654092,
+          "std": 0.063931
+        },
+        "precision_at_budget": {
+          "mean": 0.66,
+          "std": 0.06744
+        },
+        "recall_at_budget": {
+          "mean": 0.485961,
+          "std": 0.050989
+        },
+        "spearman": {
+          "mean": 0.739768,
+          "std": 0.039208
+        },
+        "spearman_new_users": {
+          "mean": 0.143252,
+          "std": 0.253973
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.544731,
+          "std": 0.056867
+        },
+        "precision_at_budget": {
+          "mean": 0.604444,
+          "std": 0.072894
+        },
+        "recall_at_budget": {
+          "mean": 0.444171,
+          "std": 0.046087
+        },
+        "spearman": {
+          "mean": 0.556902,
+          "std": 0.026004
+        },
+        "spearman_new_users": {
+          "mean": 0.084457,
+          "std": 0.313242
+        }
+      }
+    },
+    "one_way_colluders=0.15": {
+      "avg": {
+        "average_precision": {
+          "mean": 0.482572,
+          "std": 0.046977
+        },
+        "precision_at_budget": {
+          "mean": 0.58,
+          "std": 0.069885
+        },
+        "recall_at_budget": {
+          "mean": 0.340503,
+          "std": 0.035868
+        },
+        "spearman": {
+          "mean": 0.443544,
+          "std": 0.02181
+        },
+        "spearman_new_users": {
+          "mean": 0.067349,
+          "std": 0.3315
+        }
+      },
+      "avg_min3": {
+        "average_precision": {
+          "mean": 0.478193,
+          "std": 0.048382
+        },
+        "precision_at_budget": {
+          "mean": 0.575556,
+          "std": 0.077905
+        },
+        "recall_at_budget": {
+          "mean": 0.337164,
+          "std": 0.03475
+        },
+        "spearman": {
+          "mean": 0.444762,
+          "std": 0.023532
+        },
+        "spearman_new_users": {
+          "mean": -0.08108,
+          "std": 0.354663
+        }
+      },
+      "deposit:dynamic_avg": {
+        "mean_deposit_honest": {
+          "mean": 10178.045413,
+          "std": 198.8966
+        },
+        "mean_deposit_risky": {
+          "mean": 11632.410421,
+          "std": 422.953864
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.634119,
+          "std": 0.234301
+        }
+      },
+      "deposit:dynamic_ours": {
+        "mean_deposit_honest": {
+          "mean": 9696.767942,
+          "std": 141.981293
+        },
+        "mean_deposit_risky": {
+          "mean": 11109.347059,
+          "std": 383.0015
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.723769,
+          "std": 0.254114
+        }
+      },
+      "deposit:fixed": {
+        "mean_deposit_honest": {
+          "mean": 10271.873547,
+          "std": 136.681124
+        },
+        "mean_deposit_risky": {
+          "mean": 10475.916639,
+          "std": 239.575332
+        },
+        "uncovered_loss_mln_kzt": {
+          "mean": 1.819419,
+          "std": 0.275768
+        }
+      },
+      "ours": {
+        "average_precision": {
+          "mean": 0.591758,
+          "std": 0.031815
+        },
+        "precision_at_budget": {
+          "mean": 0.628889,
+          "std": 0.072384
+        },
+        "recall_at_budget": {
+          "mean": 0.369852,
+          "std": 0.042543
+        },
+        "spearman": {
+          "mean": 0.655154,
+          "std": 0.030902
+        },
+        "spearman_new_users": {
+          "mean": 0.017608,
+          "std": 0.256854
+        }
+      },
+      "ours_no_mutual": {
+        "average_precision": {
+          "mean": 0.606637,
+          "std": 0.029064
+        },
+        "precision_at_budget": {
+          "mean": 0.646667,
+          "std": 0.074668
+        },
+        "recall_at_budget": {
+          "mean": 0.379707,
+          "std": 0.036442
+        },
+        "spearman": {
+          "mean": 0.668765,
+          "std": 0.029211
+        },
+        "spearman_new_users": {
+          "mean": 0.011372,
+          "std": 0.245811
+        }
+      },
+      "ours_nocap": {
+        "average_precision": {
+          "mean": 0.537777,
+          "std": 0.033157
+        },
+        "precision_at_budget": {
+          "mean": 0.606667,
+          "std": 0.076368
+        },
+        "recall_at_budget": {
+          "mean": 0.35566,
+          "std": 0.033485
+        },
+        "spearman": {
+          "mean": 0.528635,
+          "std": 0.017731
+        },
+        "spearman_new_users": {
+          "mean": -0.006374,
+          "std": 0.259047
+        }
+      }
+    }
+  }
+}

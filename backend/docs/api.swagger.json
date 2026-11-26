@@ -1,0 +1,859 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "qolda_v1/auth.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AuthService",
+      "description": "Google OAuth uses separate HTTP endpoints: GET /auth/google and /auth/google/callback"
+    },
+    {
+      "name": "DictService",
+      "description": "Dictionaries and public sign-in config"
+    },
+    {
+      "name": "ListingService"
+    },
+    {
+      "name": "UsrService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/auth/dev": {
+      "post": {
+        "summary": "E-mail sign-in without an IdP: only with AUTH_DEV_LOGIN=true (development, pilot)",
+        "operationId": "AuthService_DevLogin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/qolda_v1AuthTokenRep"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/qolda_v1AuthDevLoginReq"
+            }
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "operationId": "AuthService_Refresh",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/qolda_v1AuthTokenRep"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/qolda_v1AuthRefreshReq"
+            }
+          }
+        ],
+        "tags": [
+          "AuthService"
+        ]
+      }
+    },
+    "/dict": {
+      "get": {
+        "operationId": "DictService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/qolda_v1DictRep"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "DictService"
+        ]
+      }
+    },
+    "/listing": {
+      "get": {
+        "operationId": "ListingService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/qolda_v1ListingListRep"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "list_params.page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "list_params.page_size",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "list_params.with_total_count",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "list_params.only_count",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "list_params.sort_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "list_params.sort",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "campus",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "price_min",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "price_max",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "free_from",
+            "description": "available on dates (rent): the available_from..available_to window covers the period",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "free_to",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "owner_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "status",
+            "description": "others' listings are visible only when active",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "mine",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "ListingService"
+        ]
+      },
+      "post": {
+        "operationId": "ListingService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/qolda_v1ListingCreateRep"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/qolda_v1ListingCreateReq"
+            }
+          }
+        ],
+        "tags": [
+          "ListingService"
+        ]
+      }
+    },
+    "/listing/{id}": {
+      "get": {
+        "operationId": "ListingService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/qolda_v1ListingMain"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "ListingService"
+        ]
+      },
+      "put": {
+        "summary": "photos are replaced wholesale; status changes through SetStatus",
+        "operationId": "ListingService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListingServiceUpdateBody"
+            }
+          }
+        ],
+        "tags": [
+          "ListingService"
+        ]
+      }
+    },
+    "/listing/{id}/status": {
+      "put": {
+        "summary": "owner: active | paused | archived",
+        "operationId": "ListingService_SetStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListingServiceSetStatusBody"
+            }
+          }
+        ],
+        "tags": [
+          "ListingService"
+        ]
+      }
+    },
+    "/me": {
+      "get": {
+        "operationId": "UsrService_GetMe",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/qolda_v1UsrMain"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "UsrService"
+        ]
+      },
+      "put": {
+        "operationId": "UsrService_UpdateMe",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/qolda_v1UsrUpdateMeReq"
+            }
+          }
+        ],
+        "tags": [
+          "UsrService"
+        ]
+      }
+    },
+    "/usr/{id}": {
+      "get": {
+        "summary": "public profile",
+        "operationId": "UsrService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/qolda_v1UsrMain"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "UsrService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ListingServiceSetStatusBody": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "ListingServiceUpdateBody": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "campus": {
+          "type": "string"
+        },
+        "photos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deposit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "wanted": {
+          "type": "string"
+        },
+        "available_from": {
+          "type": "string"
+        },
+        "available_to": {
+          "type": "string"
+        }
+      }
+    },
+    "commonListParamsSt": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "string",
+          "format": "int64"
+        },
+        "page_size": {
+          "type": "string",
+          "format": "int64"
+        },
+        "with_total_count": {
+          "type": "boolean"
+        },
+        "only_count": {
+          "type": "boolean"
+        },
+        "sort_name": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "commonPaginationInfoSt": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "string",
+          "format": "int64"
+        },
+        "page_size": {
+          "type": "string",
+          "format": "int64"
+        },
+        "total_count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "qolda_v1AuthDevLoginReq": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "qolda_v1AuthRefreshReq": {
+      "type": "object",
+      "properties": {
+        "refresh_token": {
+          "type": "string"
+        }
+      }
+    },
+    "qolda_v1AuthTokenRep": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "refresh_token": {
+          "type": "string"
+        }
+      }
+    },
+    "qolda_v1DictRep": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "campuses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowed_domains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "google_login": {
+          "type": "boolean"
+        },
+        "dev_login": {
+          "type": "boolean"
+        }
+      }
+    },
+    "qolda_v1ListingCreateRep": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "qolda_v1ListingCreateReq": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "campus": {
+          "type": "string"
+        },
+        "photos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "deposit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "wanted": {
+          "type": "string"
+        },
+        "available_from": {
+          "type": "string"
+        },
+        "available_to": {
+          "type": "string"
+        }
+      }
+    },
+    "qolda_v1ListingListRep": {
+      "type": "object",
+      "properties": {
+        "pagination_info": {
+          "$ref": "#/definitions/commonPaginationInfoSt"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/qolda_v1ListingMain"
+          }
+        }
+      }
+    },
+    "qolda_v1ListingMain": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modified_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "owner_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "owner": {
+          "$ref": "#/definitions/qolda_v1ListingOwner"
+        },
+        "type": {
+          "type": "string",
+          "title": "rent | exchange | sale"
+        },
+        "status": {
+          "type": "string",
+          "title": "active | paused | archived"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "campus": {
+          "type": "string"
+        },
+        "photos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32",
+          "title": "KZT: per day (rent) or fixed price (sale)"
+        },
+        "deposit": {
+          "type": "integer",
+          "format": "int32",
+          "title": "base deposit (rent)"
+        },
+        "wanted": {
+          "type": "string",
+          "title": "what the owner wants in return (exchange)"
+        },
+        "available_from": {
+          "type": "string",
+          "title": "YYYY-MM-DD"
+        },
+        "available_to": {
+          "type": "string"
+        }
+      }
+    },
+    "qolda_v1ListingOwner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "campus": {
+          "type": "string"
+        }
+      }
+    },
+    "qolda_v1UsrMain": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "email": {
+          "type": "string",
+          "title": "only for the profile owner"
+        },
+        "name": {
+          "type": "string"
+        },
+        "campus": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "telegram": {
+          "type": "string"
+        }
+      }
+    },
+    "qolda_v1UsrUpdateMeReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "campus": {
+          "type": "string"
+        },
+        "telegram": {
+          "type": "string"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

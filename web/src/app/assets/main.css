@@ -1,0 +1,108 @@
+@import '@fontsource-variable/onest';
+@import '@fontsource/jetbrains-mono/500.css';
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@theme {
+  --font-sans: 'Onest Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Palette: noticeboard paper, ink, one accent (moss) */
+  --color-paper: #f1f1ec;
+  --color-paper-deep: #e6e6df;
+  --color-sheet: #ffffff;
+  --color-ink: #1b1c1a;
+  --color-graphite: #5e615b;
+  --color-rule: #d9d9d1;
+  --color-rule-strong: #bdbdb3;
+
+  --color-moss-50: #eef6f1;
+  --color-moss-100: #d5eadd;
+  --color-moss-200: #aad4bb;
+  --color-moss-300: #74b892;
+  --color-moss-400: #3f956a;
+  --color-moss-500: #1e6b45;
+  --color-moss-600: #185a3a;
+  --color-moss-700: #13482f;
+  --color-moss-800: #0f3924;
+  --color-moss-900: #0b2b1b;
+  --color-moss-950: #061a10;
+
+  /* Scale 13 / 15 / 17 / 20 / 26 / 34 */
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.125rem;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.4rem;
+  --text-lead: 1.0625rem;
+  --text-lead--line-height: 1.55rem;
+  --text-title: 1.25rem;
+  --text-title--line-height: 1.625rem;
+  --text-heading: 1.625rem;
+  --text-heading--line-height: 2rem;
+  --text-display: 2.125rem;
+  --text-display--line-height: 2.5rem;
+}
+
+:root {
+  --ui-radius: 0.25rem;
+  --ui-header-height: 3.5rem;
+
+  --ui-text-dimmed: #8a8c85;
+  --ui-text-muted: var(--color-graphite);
+  --ui-text-toned: #3d3f3a;
+  --ui-text: var(--color-ink);
+  --ui-text-highlighted: var(--color-ink);
+  --ui-text-inverted: var(--color-paper);
+
+  --ui-bg: var(--color-sheet);
+  --ui-bg-muted: #f7f7f3;
+  --ui-bg-elevated: #edede7;
+  --ui-bg-accented: #e2e2da;
+  --ui-bg-inverted: var(--color-ink);
+
+  --ui-border: var(--color-rule);
+  --ui-border-muted: var(--color-paper-deep);
+  --ui-border-accented: var(--color-rule-strong);
+  --ui-border-inverted: var(--color-ink);
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 100%;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Nuxt UI paints body with --ui-bg (white sheet); the page is paper, inputs and cards stay white */
+  body {
+    background: var(--color-paper);
+    min-height: 100dvh;
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-moss-500);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-moss-100);
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

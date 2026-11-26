@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "shared/*": [
+        "src/shared/*"
+      ],
+      "domains/*": [
+        "src/domains/*"
+      ],
+      "pages/*": [
+        "src/pages/*"
+      ],
+      "app/*": [
+        "src/app/*"
+      ],
+      "i18n/*": [
+        "src/i18n/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

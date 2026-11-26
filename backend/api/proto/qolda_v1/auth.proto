@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package qolda_v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "/qolda_v1";
+
+// Google OAuth uses separate HTTP endpoints: GET /auth/google and /auth/google/callback
+service AuthService {
+  // E-mail sign-in without an IdP: only with AUTH_DEV_LOGIN=true (development, pilot)
+  rpc DevLogin(AuthDevLoginReq) returns (AuthTokenRep) {
+    option (google.api.http) = {
+      post: "/auth/dev"
+      body: "*"
+    };
+  }
+
+  rpc Refresh(AuthRefreshReq) returns (AuthTokenRep) {
+    option (google.api.http) = {
+      post: "/auth/refresh"
+      body: "*"
+    };
+  }
+}
+
+message AuthDevLoginReq {
+  string email = 1;
+  string name = 2;
+}
+
+message AuthRefreshReq {
+  string refresh_token = 1;
+}
+
+message AuthTokenRep {
+  string access_token = 1;
+  string refresh_token = 2;
+}

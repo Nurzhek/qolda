@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package qolda_v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "/qolda_v1";
+
+// Dictionaries and public sign-in config
+service DictService {
+  rpc Get(google.protobuf.Empty) returns (DictRep) {
+    option (google.api.http) = {
+      get: "/dict"
+    };
+  }
+}
+
+message DictRep {
+  repeated string categories = 1;
+  repeated string campuses = 2;
+  repeated string allowed_domains = 3;
+  bool google_login = 4;
+  bool dev_login = 5;
+}

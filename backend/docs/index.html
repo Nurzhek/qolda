@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>qolda API</title>
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui.css">
+</head>
+<body>
+  <div id="swagger"></div>
+  <script src="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui-bundle.js"></script>
+  <script>
+    // The spec has no basePath: on the app port the API lives under /api.
+    // "Try it out" reuses the session of the web app on the same origin (signed-in user's access token).
+    fetch('./api.swagger.json')
+      .then((r) => r.json())
+      .then((spec) => {
+        spec.basePath = '/api';
+        spec.info = { title: 'qolda API', version: 'Fall 2026 MVP' };
+        SwaggerUIBundle({
+          spec,
+          dom_id: '#swagger',
+          requestInterceptor: (req) => {
+            try {
+              const token = JSON.parse(localStorage.getItem('qolda-auth') || '{}').token;
+              if (token && !req.headers.Authorization)
+                req.headers.Authorization = 'Bearer ' + token;
+            } catch (e) { /* no session: anonymous request */ }
+            return req;
+          },
+        });
+      });
+  </script>
+</body>
+</html>

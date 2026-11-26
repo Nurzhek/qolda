@@ -1,0 +1,90 @@
+{
+  "name": "fall2026-v1",
+  "description": "First comparison of the trust score with the average-rating baselines: base campus, rating inflation sweep, collusion sweep. Defaults: simulate.DEFAULTS.",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "scenarios": {
+    "base": {},
+    "inflation=0.0": {
+      "inflation": 0.0
+    },
+    "inflation=0.3": {
+      "inflation": 0.3
+    },
+    "inflation=0.6": {
+      "inflation": 0.6
+    },
+    "inflation=0.9": {
+      "inflation": 0.9
+    },
+    "colluders=0.0": {
+      "mix": {
+        "reliable": 0.65,
+        "careless": 0.25,
+        "malicious": 0.1,
+        "colluder": 0.0
+      }
+    },
+    "colluders=0.05": {
+      "mix": {
+        "reliable": 0.6,
+        "careless": 0.25,
+        "malicious": 0.1,
+        "colluder": 0.05
+      }
+    },
+    "colluders=0.1": {
+      "mix": {
+        "reliable": 0.55,
+        "careless": 0.25,
+        "malicious": 0.1,
+        "colluder": 0.1
+      }
+    },
+    "colluders=0.15": {
+      "mix": {
+        "reliable": 0.5,
+        "careless": 0.25,
+        "malicious": 0.1,
+        "colluder": 0.15
+      }
+    },
+    "one_way_colluders=0.05": {
+      "mix": {
+        "reliable": 0.6,
+        "careless": 0.25,
+        "malicious": 0.1,
+        "colluder": 0.05
+      },
+      "collusion_one_way": true
+    },
+    "one_way_colluders=0.1": {
+      "mix": {
+        "reliable": 0.55,
+        "careless": 0.25,
+        "malicious": 0.1,
+        "colluder": 0.1
+      },
+      "collusion_one_way": true
+    },
+    "one_way_colluders=0.15": {
+      "mix": {
+        "reliable": 0.5,
+        "careless": 0.25,
+        "malicious": 0.1,
+        "colluder": 0.15
+      },
+      "collusion_one_way": true
+    }
+  }
+}

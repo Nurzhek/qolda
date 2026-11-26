@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package qolda_v1;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "common/common.proto";
+
+option go_package = "/qolda_v1";
+
+service ListingService {
+  rpc List(ListingListReq) returns (ListingListRep) {
+    option (google.api.http) = {
+      get: "/listing"
+    };
+  }
+
+  rpc Get(ListingGetReq) returns (ListingMain) {
+    option (google.api.http) = {
+      get: "/listing/{id}"
+    };
+  }
+
+  rpc Create(ListingCreateReq) returns (ListingCreateRep) {
+    option (google.api.http) = {
+      post: "/listing"
+      body: "*"
+    };
+  }
+
+  // photos are replaced wholesale; status changes through SetStatus
+  rpc Update(ListingUpdateReq) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      put: "/listing/{id}"
+      body: "*"
+    };
+  }
+
+  // owner: active | paused | archived
+  rpc SetStatus(ListingSetStatusReq) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      put: "/listing/{id}/status"
+      body: "*"
+    };
+  }
+}
+
+message ListingOwner {
+  int64 id = 1;
+  string name = 2;
+  string campus = 3;
+}
+
+message ListingMain {
+  int64 id = 1;
+  google.protobuf.Timestamp created_at = 2;
+  google.protobuf.Timestamp modified_at = 3;
+  int64 owner_id = 4;
+  ListingOwner owner = 5;
+  string type = 6;   // rent | exchange | sale
+  string status = 7; // active | paused | archived
+  string title = 8;
+  string description = 9;
+  string category = 10;
+  string campus = 11;
+  repeated string photos = 12;
+  int32 price = 13;   // KZT: per day (rent) or fixed price (sale)
+  int32 deposit = 14; // base deposit (rent)
+  string wanted = 15; // what the owner wants in return (exchange)
+  string available_from = 16; // YYYY-MM-DD
+  string available_to = 17;
+}
+
+message ListingListReq {
+  common.ListParamsSt list_params = 1;
+  optional string query = 2;
+  optional string type = 3;
+  optional string category = 4;
+  optional string campus = 5;
+  optional int32 price_min = 6;
+  optional int32 price_max = 7;
+  optional string free_from = 8; // available on dates (rent): the available_from..available_to window covers the period
+  optional string free_to = 9;
+  optional int64 owner_id = 10;
+  optional string status = 11; // others' listings are visible only when active
+  optional bool mine = 12;
+}
+
+message ListingListRep {
+  common.PaginationInfoSt pagination_info = 1;
+  repeated ListingMain results = 2;
+}
+
+message ListingGetReq {
+  int64 id = 1;
+}
+
+message ListingCreateReq {
+  optional string type = 1;
+  optional string title = 2;
+  optional string description = 3;
+  optional string category = 4;
+  optional string campus = 5;
+  repeated string photos = 6;
+  optional int32 price = 7;
+  optional int32 deposit = 8;
+  optional string wanted = 9;
+  optional string available_from = 10;
+  optional string available_to = 11;
+}
+
+message ListingCreateRep {
+  int64 id = 1;
+}
+
+message ListingUpdateReq {
+  int64 id = 1;
+  optional string title = 2;
+  optional string description = 3;
+  optional string category = 4;
+  optional string campus = 5;
+  repeated string photos = 6;
+  optional int32 price = 7;
+  optional int32 deposit = 8;
+  optional string wanted = 9;
+  optional string available_from = 10;
+  optional string available_to = 11;
+}
+
+message ListingSetStatusReq {
+  int64 id = 1;
+  string status = 2;
+}
+

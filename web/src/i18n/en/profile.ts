@@ -1,0 +1,20 @@
+export default {
+  name: 'Name',
+  campus: 'Campus',
+  campusPlaceholder: 'Where people can pick things up',
+  telegram: 'Telegram username',
+  telegramHint: 'Username only, like aidana_s. Shown on your listings so people can message you.',
+  email: 'University e-mail',
+  memberSince: 'On qolda since {date}',
+  saved: 'Profile saved',
+  ownTitle: 'Your profile',
+  publicListings: 'Listings by {name}',
+  noListings: '{name} has no active listings right now.',
+  myListingsLink: 'Manage your listings',
+  messageOnTelegram: 'Message on Telegram',
+  roles: {
+    student: 'Student',
+    moderator: 'Moderator',
+    admin: 'Administrator',
+  },
+};

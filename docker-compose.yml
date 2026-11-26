@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: qolda
+      POSTGRES_PASSWORD: qolda
+      POSTGRES_DB: qolda
+    ports:
+      - "127.0.0.1:5435:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U qolda"]
+      interval: 2s
+      retries: 30
+
+  app:
+    build: .
+    environment:
+      PG_DSN: postgres://qolda:qolda@db:5432/qolda?sslmode=disable
+      PUBLIC_URL: ${PUBLIC_URL:-http://localhost:8090}
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}
+      ALLOWED_DOMAINS: ${ALLOWED_DOMAINS:-nu.edu.kz}
+      AUTH_DEV_LOGIN: ${AUTH_DEV_LOGIN:-false}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+    ports:
+      - "127.0.0.1:${APP_PORT:-8090}:8090"
+    volumes:
+      - uploads:/data/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  uploads:
