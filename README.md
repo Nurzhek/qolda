@@ -6,15 +6,12 @@ Campus platform for renting, swapping and selling items between students of one 
 **Fall 2026 MVP scope** (see `docs/Requirements_and_Design_Team4`): university sign-in with a
 domain allowlist (non-university accounts are rejected), roles, JWT; user profile; rent / exchange /
 sale listings with photos; catalogue search and filters; PostgreSQL schema; OpenAPI; Docker Compose;
-CI with tests for auth and listings; a reputation model prototype with a behaviour simulator and a first
-comparison against the average-rating baseline. Orders, deposits and Kaspi, chat, ratings, the
-reputation engine inside the backend and moderation are Spring 2027.
+CI with tests for auth and listings. Orders, deposits and Kaspi, chat, ratings
+and moderation are Spring 2027.
 
 ```
 backend/   Go: gotemplate (Clean Architecture + DDD), gRPC + grpc-gateway, pgx/mobone   → backend/CLAUDE.md
 web/       Vue 3 + Vite + Nuxt UI + Pinia, Feature-Sliced Design                     → web/CLAUDE.md
-reputation/  trust-score prototype, behaviour simulator, baseline comparison (Python) → reputation/README.md
-             the score is ported to Go in backend/internal/domain/trust, checked against golden cases
 docs/      kickoff and requirements/design documents
 ```
 
