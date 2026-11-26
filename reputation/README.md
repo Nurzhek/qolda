@@ -84,6 +84,13 @@ malicious + colluders.
 **Baselines:** `avg`, the plain average rating (no ratings → campus mean); `avg_min3`, the average only
 after 3+ reviews.
 
+**Learned baselines** (`logreg`, `boosting`): logistic regression and gradient boosting
+(scikit-learn) over what the platform can observe — the trust-score components, number of distinct
+counterparties, share of mutual votes, raw average rating, number of rentals — trained on 10 separate
+seeds per scenario (`train_seeds`, never evaluated) with the simulator's ground-truth labels. They are
+not candidates for production (no labels exist on a real campus yet, and FR10 requires an explainable
+score); they measure how much the transparent formula leaves on the table.
+
 **Metrics:** Spearman correlation between score and true reliability (all users, and users with ≤3
 rentals); average precision for finding risky users by lowest score; precision/recall when moderators
 review the lowest-scored 15%; lenders' uncovered loss (`max(cost − deposit, 0)`) and mean deposit held
@@ -132,6 +139,29 @@ Full tables: `results/fall2026-v1/summary.md`. Plots: `sweep_inflation.png`, `sw
   do so, so its best attack (0.66) is still weaker than the old worst case (0.60).
 - Dynamic deposits cut lenders' uncovered loss by about 12% vs a fixed deposit. The average-rating policy
   does the same, but only the trust score does it while also lowering honest users' deposits (−4%).
+
+**Learned baselines: what a model trained on ground truth adds**
+
+| scenario | ours: Spearman / AP | logreg: Spearman / AP | boosting: Spearman / AP |
+|---|---|---|---|
+| base | 0.79 / 0.71 | 0.80 / **0.88** | 0.76 / 0.85 |
+| no colluders | 0.77 / 0.70 | 0.78 / 0.76 | 0.71 / 0.74 |
+| 15% colluders | 0.70 / 0.60 | 0.82 / **0.95** | 0.83 / 0.95 |
+| 90% rating inflation | 0.79 / 0.69 | 0.81 / 0.90 | 0.73 / 0.88 |
+
+- Boosting is never better than logistic regression and ranks users worse: a non-linear black box buys
+  nothing here, so the production model should stay linear and explainable.
+- Logistic regression ranks about as well as our formula but finds risky users much better (AP 0.88 vs
+  0.71). Its coefficients (base scenario, standardized, + = riskier) say why: many rentals (+2.14) from
+  few distinct counterparties (−1.02), i.e. renting again and again from the same people, the signature
+  of a ring, is the strongest signal; then disputes lost (clean −1.47) and on-time returns (−0.68);
+  the rating matters least (−0.26). Our formula has no "repeat counterparty" signal and gives the rating
+  the largest weight (0.45) and disputes only 0.20.
+- Caveat: the regression learned the simulator's own rules (a ring runs 0.5 fake rentals per real
+  one). A real ring could keep its volume low, so the repeat-counterparty signal must be confirmed on
+  pilot data before it changes the model.
+- Next step: add a transparent "rentals per counterparty" component and move weight from the rating to
+  disputes, then re-run; the formula stays explainable and portable to Go.
 
 **What it doesn't show yet (honestly)**
 

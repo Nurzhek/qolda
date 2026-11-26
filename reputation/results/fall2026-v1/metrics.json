@@ -1,5 +1,5 @@
 {
-  "code_version": "ca029c2f5733",
+  "code_version": "eb7fd0d682ca",
   "config": {
     "description": "First comparison of the trust score with the average-rating baselines: base campus, rating inflation sweep, collusion sweep. Defaults: simulate.DEFAULTS.",
     "name": "fall2026-v1",
@@ -88,7 +88,141 @@
       8,
       9,
       10
+    ],
+    "train_seeds": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110
     ]
+  },
+  "logreg_coefficients": {
+    "base": {
+      "age": -0.1025,
+      "clean": -1.4662,
+      "mutual_share": 0.2966,
+      "on_time": -0.6761,
+      "rating": -0.2621,
+      "raw_avg_rating": 0.0337,
+      "rentals": 2.1404,
+      "votes": -1.0248
+    },
+    "colluders=0.0": {
+      "age": -0.0011,
+      "clean": -1.4206,
+      "mutual_share": -0.0772,
+      "on_time": -0.8871,
+      "rating": 0.0084,
+      "raw_avg_rating": -0.3139,
+      "rentals": -0.1214,
+      "votes": -0.0802
+    },
+    "colluders=0.05": {
+      "age": -0.1025,
+      "clean": -1.4662,
+      "mutual_share": 0.2966,
+      "on_time": -0.6761,
+      "rating": -0.2621,
+      "raw_avg_rating": 0.0337,
+      "rentals": 2.1404,
+      "votes": -1.0248
+    },
+    "colluders=0.1": {
+      "age": -0.7693,
+      "clean": -1.3645,
+      "mutual_share": 1.0311,
+      "on_time": -0.7413,
+      "rating": -0.3082,
+      "raw_avg_rating": -0.0169,
+      "rentals": 2.1406,
+      "votes": -0.7489
+    },
+    "colluders=0.15": {
+      "age": -1.2381,
+      "clean": -1.5768,
+      "mutual_share": 0.9351,
+      "on_time": -0.7958,
+      "rating": 0.207,
+      "raw_avg_rating": -0.3112,
+      "rentals": 1.2728,
+      "votes": 0.8245
+    },
+    "inflation=0.0": {
+      "age": -0.0573,
+      "clean": -1.0356,
+      "mutual_share": 0.6381,
+      "on_time": -0.2682,
+      "rating": -1.1217,
+      "raw_avg_rating": -0.115,
+      "rentals": 2.0761,
+      "votes": -1.1875
+    },
+    "inflation=0.3": {
+      "age": -0.1025,
+      "clean": -1.4662,
+      "mutual_share": 0.2966,
+      "on_time": -0.6761,
+      "rating": -0.2621,
+      "raw_avg_rating": 0.0337,
+      "rentals": 2.1404,
+      "votes": -1.0248
+    },
+    "inflation=0.6": {
+      "age": -0.2598,
+      "clean": -1.4354,
+      "mutual_share": -0.0858,
+      "on_time": -0.9743,
+      "rating": 0.2621,
+      "raw_avg_rating": -0.4202,
+      "rentals": 2.8525,
+      "votes": -0.9256
+    },
+    "inflation=0.9": {
+      "age": -0.1048,
+      "clean": -1.3906,
+      "mutual_share": 0.2176,
+      "on_time": -0.9043,
+      "rating": -0.1063,
+      "raw_avg_rating": 0.0146,
+      "rentals": 2.3618,
+      "votes": -1.0409
+    },
+    "one_way_colluders=0.05": {
+      "age": -0.04,
+      "clean": -1.4416,
+      "mutual_share": 0.0908,
+      "on_time": -0.6518,
+      "rating": -0.3397,
+      "raw_avg_rating": 0.1202,
+      "rentals": 3.0659,
+      "votes": -1.1435
+    },
+    "one_way_colluders=0.1": {
+      "age": -0.4502,
+      "clean": -1.3521,
+      "mutual_share": 0.0941,
+      "on_time": -0.6739,
+      "rating": -0.5306,
+      "raw_avg_rating": 0.2459,
+      "rentals": 4.7983,
+      "votes": -1.8767
+    },
+    "one_way_colluders=0.15": {
+      "age": -0.8558,
+      "clean": -1.5655,
+      "mutual_share": 0.0005,
+      "on_time": -0.7901,
+      "rating": -0.1173,
+      "raw_avg_rating": 0.136,
+      "rentals": 4.8084,
+      "votes": -1.7239
+    }
   },
   "scenarios": {
     "base": {
@@ -136,6 +270,28 @@
           "std": 0.280658
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.853013,
+          "std": 0.037309
+        },
+        "precision_at_budget": {
+          "mean": 0.731111,
+          "std": 0.066258
+        },
+        "recall_at_budget": {
+          "mean": 0.745543,
+          "std": 0.072674
+        },
+        "spearman": {
+          "mean": 0.758051,
+          "std": 0.019434
+        },
+        "spearman_new_users": {
+          "mean": 0.647221,
+          "std": 0.240692
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 10345.457444,
@@ -176,6 +332,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 1.049126,
           "std": 0.181748
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.878873,
+          "std": 0.040715
+        },
+        "precision_at_budget": {
+          "mean": 0.771111,
+          "std": 0.078912
+        },
+        "recall_at_budget": {
+          "mean": 0.784087,
+          "std": 0.060208
+        },
+        "spearman": {
+          "mean": 0.799932,
+          "std": 0.01623
+        },
+        "spearman_new_users": {
+          "mean": 0.673678,
+          "std": 0.133127
         }
       },
       "ours": {
@@ -290,6 +468,28 @@
           "std": 0.187409
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.739825,
+          "std": 0.056751
+        },
+        "precision_at_budget": {
+          "mean": 0.517778,
+          "std": 0.076368
+        },
+        "recall_at_budget": {
+          "mean": 0.800848,
+          "std": 0.079289
+        },
+        "spearman": {
+          "mean": 0.713267,
+          "std": 0.027191
+        },
+        "spearman_new_users": {
+          "mean": 0.368304,
+          "std": 0.370492
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 9875.424146,
@@ -330,6 +530,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 0.744664,
           "std": 0.147526
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.761508,
+          "std": 0.066665
+        },
+        "precision_at_budget": {
+          "mean": 0.528889,
+          "std": 0.073569
+        },
+        "recall_at_budget": {
+          "mean": 0.818861,
+          "std": 0.078977
+        },
+        "spearman": {
+          "mean": 0.776856,
+          "std": 0.024087
+        },
+        "spearman_new_users": {
+          "mean": 0.503049,
+          "std": 0.328894
         }
       },
       "ours": {
@@ -444,6 +666,28 @@
           "std": 0.280658
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.853013,
+          "std": 0.037309
+        },
+        "precision_at_budget": {
+          "mean": 0.731111,
+          "std": 0.066258
+        },
+        "recall_at_budget": {
+          "mean": 0.745543,
+          "std": 0.072674
+        },
+        "spearman": {
+          "mean": 0.758051,
+          "std": 0.019434
+        },
+        "spearman_new_users": {
+          "mean": 0.647221,
+          "std": 0.240692
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 10345.457444,
@@ -484,6 +728,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 1.049126,
           "std": 0.181748
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.878873,
+          "std": 0.040715
+        },
+        "precision_at_budget": {
+          "mean": 0.771111,
+          "std": 0.078912
+        },
+        "recall_at_budget": {
+          "mean": 0.784087,
+          "std": 0.060208
+        },
+        "spearman": {
+          "mean": 0.799932,
+          "std": 0.01623
+        },
+        "spearman_new_users": {
+          "mean": 0.673678,
+          "std": 0.133127
         }
       },
       "ours": {
@@ -598,6 +864,28 @@
           "std": 0.359591
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.92399,
+          "std": 0.017064
+        },
+        "precision_at_budget": {
+          "mean": 0.948889,
+          "std": 0.034498
+        },
+        "recall_at_budget": {
+          "mean": 0.699846,
+          "std": 0.05422
+        },
+        "spearman": {
+          "mean": 0.785485,
+          "std": 0.014418
+        },
+        "spearman_new_users": {
+          "mean": 0.485641,
+          "std": 0.29614
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 10328.823621,
@@ -638,6 +926,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 1.473414,
           "std": 0.126358
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.932453,
+          "std": 0.013394
+        },
+        "precision_at_budget": {
+          "mean": 0.951111,
+          "std": 0.040734
+        },
+        "recall_at_budget": {
+          "mean": 0.702081,
+          "std": 0.06395
+        },
+        "spearman": {
+          "mean": 0.821032,
+          "std": 0.016333
+        },
+        "spearman_new_users": {
+          "mean": 0.45982,
+          "std": 0.35781
         }
       },
       "ours": {
@@ -752,6 +1062,28 @@
           "std": 0.337822
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.952823,
+          "std": 0.016627
+        },
+        "precision_at_budget": {
+          "mean": 1.0,
+          "std": 0.0
+        },
+        "recall_at_budget": {
+          "mean": 0.591948,
+          "std": 0.064118
+        },
+        "spearman": {
+          "mean": 0.832094,
+          "std": 0.013474
+        },
+        "spearman_new_users": {
+          "mean": 0.506427,
+          "std": 0.265457
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 10178.045413,
@@ -792,6 +1124,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 1.819419,
           "std": 0.275768
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.947558,
+          "std": 0.01701
+        },
+        "precision_at_budget": {
+          "mean": 0.993333,
+          "std": 0.010184
+        },
+        "recall_at_budget": {
+          "mean": 0.588119,
+          "std": 0.064811
+        },
+        "spearman": {
+          "mean": 0.816549,
+          "std": 0.014705
+        },
+        "spearman_new_users": {
+          "mean": 0.606225,
+          "std": 0.16709
         }
       },
       "ours": {
@@ -906,6 +1260,28 @@
           "std": 0.349428
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.856323,
+          "std": 0.047039
+        },
+        "precision_at_budget": {
+          "mean": 0.751111,
+          "std": 0.090976
+        },
+        "recall_at_budget": {
+          "mean": 0.7626,
+          "std": 0.058314
+        },
+        "spearman": {
+          "mean": 0.724171,
+          "std": 0.023701
+        },
+        "spearman_new_users": {
+          "mean": 0.255811,
+          "std": 0.389046
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 10408.364672,
@@ -946,6 +1322,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 0.992601,
           "std": 0.17648
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.868279,
+          "std": 0.032843
+        },
+        "precision_at_budget": {
+          "mean": 0.768889,
+          "std": 0.082072
+        },
+        "recall_at_budget": {
+          "mean": 0.78082,
+          "std": 0.045517
+        },
+        "spearman": {
+          "mean": 0.77732,
+          "std": 0.013945
+        },
+        "spearman_new_users": {
+          "mean": 0.58241,
+          "std": 0.208501
         }
       },
       "ours": {
@@ -1060,6 +1458,28 @@
           "std": 0.280658
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.853013,
+          "std": 0.037309
+        },
+        "precision_at_budget": {
+          "mean": 0.731111,
+          "std": 0.066258
+        },
+        "recall_at_budget": {
+          "mean": 0.745543,
+          "std": 0.072674
+        },
+        "spearman": {
+          "mean": 0.758051,
+          "std": 0.019434
+        },
+        "spearman_new_users": {
+          "mean": 0.647221,
+          "std": 0.240692
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 10345.457444,
@@ -1100,6 +1520,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 1.049126,
           "std": 0.181748
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.878873,
+          "std": 0.040715
+        },
+        "precision_at_budget": {
+          "mean": 0.771111,
+          "std": 0.078912
+        },
+        "recall_at_budget": {
+          "mean": 0.784087,
+          "std": 0.060208
+        },
+        "spearman": {
+          "mean": 0.799932,
+          "std": 0.01623
+        },
+        "spearman_new_users": {
+          "mean": 0.673678,
+          "std": 0.133127
         }
       },
       "ours": {
@@ -1214,6 +1656,28 @@
           "std": 0.242455
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.876945,
+          "std": 0.036708
+        },
+        "precision_at_budget": {
+          "mean": 0.782222,
+          "std": 0.076206
+        },
+        "recall_at_budget": {
+          "mean": 0.795035,
+          "std": 0.048772
+        },
+        "spearman": {
+          "mean": 0.768852,
+          "std": 0.028559
+        },
+        "spearman_new_users": {
+          "mean": 0.555176,
+          "std": 0.274429
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 10316.840486,
@@ -1254,6 +1718,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 1.072782,
           "std": 0.128168
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.874804,
+          "std": 0.029284
+        },
+        "precision_at_budget": {
+          "mean": 0.768889,
+          "std": 0.066071
+        },
+        "recall_at_budget": {
+          "mean": 0.78351,
+          "std": 0.063999
+        },
+        "spearman": {
+          "mean": 0.805285,
+          "std": 0.017353
+        },
+        "spearman_new_users": {
+          "mean": 0.638813,
+          "std": 0.144106
         }
       },
       "ours": {
@@ -1368,6 +1854,28 @@
           "std": 0.284062
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.876745,
+          "std": 0.032535
+        },
+        "precision_at_budget": {
+          "mean": 0.773333,
+          "std": 0.061904
+        },
+        "recall_at_budget": {
+          "mean": 0.788334,
+          "std": 0.064676
+        },
+        "spearman": {
+          "mean": 0.729446,
+          "std": 0.033794
+        },
+        "spearman_new_users": {
+          "mean": 0.339713,
+          "std": 0.466313
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 10361.186421,
@@ -1408,6 +1916,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 1.076956,
           "std": 0.206864
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.900451,
+          "std": 0.028246
+        },
+        "precision_at_budget": {
+          "mean": 0.793333,
+          "std": 0.060492
+        },
+        "recall_at_budget": {
+          "mean": 0.808303,
+          "std": 0.056715
+        },
+        "spearman": {
+          "mean": 0.81256,
+          "std": 0.022007
+        },
+        "spearman_new_users": {
+          "mean": 0.429882,
+          "std": 0.436138
         }
       },
       "ours": {
@@ -1522,6 +2052,28 @@
           "std": 0.280658
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.846181,
+          "std": 0.036451
+        },
+        "precision_at_budget": {
+          "mean": 0.724444,
+          "std": 0.072487
+        },
+        "recall_at_budget": {
+          "mean": 0.737193,
+          "std": 0.061362
+        },
+        "spearman": {
+          "mean": 0.74321,
+          "std": 0.018479
+        },
+        "spearman_new_users": {
+          "mean": 0.630584,
+          "std": 0.192214
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 10345.457444,
@@ -1562,6 +2114,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 1.049126,
           "std": 0.181748
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.8718,
+          "std": 0.042176
+        },
+        "precision_at_budget": {
+          "mean": 0.76,
+          "std": 0.078756
+        },
+        "recall_at_budget": {
+          "mean": 0.772703,
+          "std": 0.060799
+        },
+        "spearman": {
+          "mean": 0.797653,
+          "std": 0.016634
+        },
+        "spearman_new_users": {
+          "mean": 0.686371,
+          "std": 0.13709
         }
       },
       "ours": {
@@ -1676,6 +2250,28 @@
           "std": 0.359591
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.914741,
+          "std": 0.015497
+        },
+        "precision_at_budget": {
+          "mean": 0.937778,
+          "std": 0.041929
+        },
+        "recall_at_budget": {
+          "mean": 0.691314,
+          "std": 0.052703
+        },
+        "spearman": {
+          "mean": 0.779382,
+          "std": 0.016252
+        },
+        "spearman_new_users": {
+          "mean": 0.489851,
+          "std": 0.185687
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 10328.823621,
@@ -1716,6 +2312,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 1.473414,
           "std": 0.126358
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.929797,
+          "std": 0.014644
+        },
+        "precision_at_budget": {
+          "mean": 0.944444,
+          "std": 0.045812
+        },
+        "recall_at_budget": {
+          "mean": 0.696532,
+          "std": 0.058391
+        },
+        "spearman": {
+          "mean": 0.8259,
+          "std": 0.0161
+        },
+        "spearman_new_users": {
+          "mean": 0.472805,
+          "std": 0.362316
         }
       },
       "ours": {
@@ -1830,6 +2448,28 @@
           "std": 0.354663
         }
       },
+      "boosting": {
+        "average_precision": {
+          "mean": 0.940727,
+          "std": 0.018467
+        },
+        "precision_at_budget": {
+          "mean": 0.986667,
+          "std": 0.014741
+        },
+        "recall_at_budget": {
+          "mean": 0.583925,
+          "std": 0.063091
+        },
+        "spearman": {
+          "mean": 0.839725,
+          "std": 0.012842
+        },
+        "spearman_new_users": {
+          "mean": 0.532778,
+          "std": 0.208272
+        }
+      },
       "deposit:dynamic_avg": {
         "mean_deposit_honest": {
           "mean": 10178.045413,
@@ -1870,6 +2510,28 @@
         "uncovered_loss_mln_kzt": {
           "mean": 1.819419,
           "std": 0.275768
+        }
+      },
+      "logreg": {
+        "average_precision": {
+          "mean": 0.93456,
+          "std": 0.013972
+        },
+        "precision_at_budget": {
+          "mean": 0.982222,
+          "std": 0.013333
+        },
+        "recall_at_budget": {
+          "mean": 0.581581,
+          "std": 0.065009
+        },
+        "spearman": {
+          "mean": 0.832726,
+          "std": 0.011679
+        },
+        "spearman_new_users": {
+          "mean": 0.61071,
+          "std": 0.138974
         }
       },
       "ours": {

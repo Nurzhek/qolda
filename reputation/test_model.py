@@ -57,7 +57,8 @@ def test_mutual_votes_count_less():
 
 
 def test_experiment_is_reproducible(tmp_path):
-    cfg = {"name": "tiny", "seeds": [1], "users": 40, "transactions": 300, "scenarios": {"base": {}}}
+    cfg = {"name": "tiny", "seeds": [1], "train_seeds": [7], "users": 40, "transactions": 300,
+           "scenarios": {"base": {}}}
     path = tmp_path / "tiny.json"
     path.write_text(json.dumps(cfg))
     runs = []
