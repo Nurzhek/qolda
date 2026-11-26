@@ -1,5 +1,5 @@
 {
-  "code_version": "da6f40271bb6",
+  "code_version": "ca029c2f5733",
   "config": {
     "description": "First comparison of the trust score with the average-rating baselines: base campus, rating inflation sweep, collusion sweep. Defaults: simulate.DEFAULTS.",
     "name": "fall2026-v1",

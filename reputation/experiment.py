@@ -49,7 +49,8 @@ def method_scores(run: dict) -> dict[str, np.ndarray]:
 def spearman(a: np.ndarray, b: np.ndarray) -> float:
     if len(a) < 3 or np.ptp(a) == 0 or np.ptp(b) == 0:
         return 0.0
-    return float(pd.Series(a).corr(pd.Series(b), method="spearman"))
+    # Spearman = Pearson on average ranks; done by hand so pandas doesn't need scipy
+    return float(pd.Series(a).rank().corr(pd.Series(b).rank()))
 
 
 def average_precision(scores: np.ndarray, risky: np.ndarray) -> float:
