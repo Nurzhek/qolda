@@ -55,9 +55,12 @@ func GrpcGatewayCreateHandler(muxHook func(*runtime.ServeMux) error) (http.Handl
 
 			if len(repBody) == 0 {
 				// runtime.DefaultHTTPErrorHandler(ctx, mux, marshaler, w, r, err)
+				// gateway-level failure (e.g. a malformed body): the error text can quote the request,
+				// tokens included, so log only where it happened
+				slog.Error("GRPC_GW: ErrorHandler", "code", status.Code(err).String(), "method", r.Method, "path", r.URL.Path)
 				obj := map[string]string{
 					"code":    errs.ServiceNA.Error(),
-					"message": err.Error(),
+					"message": errs.ServiceNA.Error(),
 				}
 				repBody, err = json.Marshal(obj)
 				if err != nil {

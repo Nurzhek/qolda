@@ -4,6 +4,7 @@ import { useLoading } from 'shared/lib/composables/useLoading';
 import { PageName } from 'shared/lib/types/app/pages';
 import { useAuthStore } from 'shared/stores/auth.store';
 import { AuthRepository } from '../api/auth.repository';
+import { markGoogleSignInStarted } from './parse-callback';
 
 // No open redirects: only return to our own path
 export function safeRedirect(value: unknown) {
@@ -18,6 +19,7 @@ export function useAuth() {
   const loadingState = useLoading();
 
   function signInWithGoogle(redirect: string) {
+    markGoogleSignInStarted();
     window.location.assign(AuthRepository.googleSignInUrl(safeRedirect(redirect)));
   }
 

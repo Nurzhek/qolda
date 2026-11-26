@@ -1,0 +1,1 @@
+import{ft as e,jt as t,st as n,ut as r}from"./tv-BO1q17-U.js";import{r as i}from"./index-DEXztc76.js";var a={},o={class:`font-sans text-[1.375rem] leading-none font-bold tracking-[-0.04em] text-ink`};function s(i,a){return t(),r(`span`,o,[...a[0]||=[e(` qolda`,-1),n(`span`,{class:`text-moss-500`},`.`,-1)]])}var c=i(a,[[`render`,s]]);export{c as t};

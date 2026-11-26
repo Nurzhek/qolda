@@ -156,14 +156,16 @@ func GrpcInterceptorError() grpc.UnaryServerInterceptor {
 				Fields:  fullErr.Fields,
 			}
 		} else if baseErr, ok := errs.AsErr(err); ok { // errs.Err (value or pointer)
+			// only the code goes out: the wrapped text names internal call paths
 			ei = &common.ErrorRep{
 				Code:    baseErr.Error(),
-				Message: errStr,
+				Message: baseErr.Error(),
 			}
 		} else {
+			// unexpected failure: the details (SQL, hosts) stay in the log, never in the response
 			ei = &common.ErrorRep{
 				Code:    errs.ServiceNA.Error(),
-				Message: errStr,
+				Message: errs.ServiceNA.Error(),
 			}
 		}
 
@@ -180,7 +182,7 @@ func GrpcInterceptorError() grpc.UnaryServerInterceptor {
 			slog.String("method", info.FullMethod),
 		)
 
-		st := status.New(grpcCode(ei.Code), errStr)
+		st := status.New(grpcCode(ei.Code), ei.Message)
 		st, err = st.WithDetails(ei)
 		if err != nil {
 			slog.Error(
@@ -188,7 +190,7 @@ func GrpcInterceptorError() grpc.UnaryServerInterceptor {
 				slog.String("error", errStr),
 				slog.String("method", info.FullMethod),
 			)
-			st = status.New(codes.InvalidArgument, errStr)
+			st = status.New(codes.InvalidArgument, ei.Message)
 		}
 
 		return h, st.Err()
